@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Primera pantalla con la imagen OIP.jpg */
+        #initial-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('OIP.jpg') no-repeat center center fixed;
+            background-size: cover;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4vw;  /* Ajuste el tamaño para pantallas grandes */
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            width: 8vw;  /* Ajuste el tamaño */
+            height: 8vw;  /* Ajuste el tamaño */
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            margin: 20px auto;
+            max-width: 100px;  /* Limita el tamaño máximo */
+            max-height: 100px; /* Limita el tamaño máximo */
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            width: 8vw;  /* Ajuste el tamaño */
+            height: 8vw;  /* Ajuste el tamaño */
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            max-width: 100px;  /* Limita el tamaño máximo */
+            max-height: 100px; /* Limita el tamaño máximo */
+        }
+
+        .heart::before { top: -4vw; left: 0; }
+        .heart::after { left: 4vw; top: 0; }
+
+        button {
+            background-color: pink;
+            border: none;
+            padding: 2vw 5vw;
+            font-size: 3vw;
+            cursor: pointer;
+            border-radius: 5px;
+            color: black;
+            font-weight: bold;
+            max-width: 300px; /* Limitar el ancho máximo del botón */
+        }
+
+        button:hover { 
+            background-color: hotpink; 
+        }
+
+        /* Segunda pantalla con la imagen OIP (1).jpg */
+        .message-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('OIP (1).jpg') no-repeat center center fixed;
+            background-size: cover;
+            width: 100%;
+        }
+
+        .message {
+            font-size: 3vw;  /* Ajuste del tamaño del texto */
+            max-width: 80%;
+            color: white;
+            padding: 4vw;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-width: 500px;  /* Limita el tamaño máximo del mensaje */
+        }
+
+        /* Animación de flores */
+        .flower {
+            position: absolute;
+            width: 6vw;
+            height: 6vw;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sakura_Mark.svg/240px-Sakura_Mark.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            top: -50px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10%); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Estilo para el pequeño corazón en la segunda pantalla */
+        .footer-heart {
+            margin-top: 20px;
+            font-size: 3vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-heart .heart {
+            width: 6vw;
+            height: 6vw;
+            margin-right: 10px;
+            background-color: red;
+            transform: rotate(-45deg);
+            max-width: 50px; /* Limita el tamaño máximo */
+            max-height: 50px; /* Limita el tamaño máximo */
+        }
+
+        .footer-heart .heart::before, .footer-heart .heart::after {
+            content: "";
+            width: 6vw;
+            height: 6vw;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            max-width: 50px; /* Limita el tamaño máximo */
+            max-height: 50px; /* Limita el tamaño máximo */
+        }
+
+        .footer-heart .heart::before { top: -3vw; left: 0; }
+        .footer-heart .heart::after { left: 3vw; top: 0; }
+
+        /* Video */
+        video {
+            width: 100%;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Primera pantalla -->
+    <div id="initial-screen">
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <div class="heart"></div>
+        <button onclick="showMessage()">Si mi niño ( no tienes más opciones )</button>
+    </div>
+
+    <!-- Segunda pantalla -->
+    <div id="message-screen" class="message-container">
+        <div class="message">
+            Quiero decirte gracias por ser mi persona especial, mi compañera, mi mejor amiga y mi todo.  
+            Gracias por el amor incondicional que me das, por las risas, las aventuras y los momentos que compartimos juntos.  
+            Eres la razón por la que mi vida es más hermosa y llena de sentido.  
+            Te amo más que ayer, pero menos que mañana.  
+        </div>
+
+        <!-- Corazón y mensaje de la parte inferior -->
+        <div class="footer-heart">
+            <div class="heart"></div>
+            <span>Oprime el corazón para ver el video</span>
+        </div>
+
+        <!-- Video -->
+        <video id="valentine-video" controls style="display:none;">
+            <source src="C:/Users/aadri/Downloads/WhatsApp Video 2025-02-04 at 5.04.11 PM.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+
+    </div>
+
+    <script>
+        function showMessage() {
+            // Ocultar la primera pantalla y mostrar la segunda
+            document.getElementById("initial-screen").style.display = "none";
+            document.getElementById("message-screen").style.display = "flex";
+
+            // Crear animación de flores cayendo
+            for (let i = 0; i < 20; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("flower");
+                document.body.appendChild(flower);
+
+                let randomX = Math.random() * window.innerWidth; // Posición aleatoria en X
+                let randomDelay = Math.random() * 5; // Retraso aleatorio
+                let randomDuration = 5 + Math.random() * 5; // Duración aleatoria
+
+                flower.style.left = randomX + "px";
+                flower.style.animationDuration = randomDuration + "s";
+                flower.style.animationDelay = randomDelay + "s";
+            }
+        }
+
+        // Función para reproducir el video cuando se oprima el corazón
+        document.querySelector('.footer-heart .heart').addEventListener('click', function() {
+            // Reproducir el video
+            var video = document.getElementById('valentine-video');
+            video.style.display = 'block'; // Mostrar el video
+            video.play(); // Reproducir el video
+        });
+    </script>
+
+</body>
+</html>
